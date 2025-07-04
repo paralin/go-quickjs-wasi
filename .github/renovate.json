@@ -12,6 +12,13 @@
       "matchManagers": ["gomod"],
       "matchDepTypes": ["replace"],
       "enabled": false
+    },
+    {
+      "matchManagers": ["gomod"],
+      "matchPackageNames": [
+        "github.com/paralin/go-quickjs-wasi",
+      ],
+      "enabled": false
     }
   ]
 }
