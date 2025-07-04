@@ -2,6 +2,17 @@
 
 A Go module that embeds the QuickJS-NG WASI WebAssembly runtime.
 
+## About QuickJS-NG
+
+QuickJS is a small and embeddable JavaScript engine. It aims to support the latest ECMAScript specification.
+
+This project uses [QuickJS-NG] which is a fork of the original [QuickJS project]
+by Fabrice Bellard and Charlie Gordon, after it went dormant, with the intent of
+reigniting its development.
+
+[QuickJS-NG]: https://github.com/quickjs-ng/quickjs
+[QuickJS project]: https://bellard.org/quickjs/
+
 ## Purpose
 
 This module provides easy access to the QuickJS-NG JavaScript engine compiled to
