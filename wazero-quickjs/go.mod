@@ -1,4 +1,4 @@
-module github.com/paralin/go-quickjs-wasi/repl
+module github.com/paralin/go-quickjs-wasi/wazero-quickjs
 
 go 1.24.4
 
