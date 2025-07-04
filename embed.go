@@ -8,3 +8,6 @@ import _ "embed"
 //
 //go:embed qjs-wasi.wasm
 var QuickJSWASM []byte
+
+// QuickJSWASMFilename is the filename for QuickJSWASM.
+const QuickJSWASMFilename = "qjs-wasi.wasm"
