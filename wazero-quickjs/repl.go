@@ -20,10 +20,16 @@ func main() {
 	defer r.Close(ctx) // This closes everything this Runtime created.
 
 	// Configure the module with stdin, stdout, and stderr.
+	fsRoot, err := os.OpenRoot(".")
+	if err != nil {
+		log.Panicln(err.Error())
+	}
+
 	config := wazero.NewModuleConfig().
 		WithStdin(os.Stdin).
 		WithStdout(os.Stdout).
-		WithStderr(os.Stderr)
+		WithStderr(os.Stderr).
+		WithFS(fsRoot.FS())
 
 	// Instantiate WASI, which implements system call APIs.
 	// This is required for the Wasm module to print to the console.
@@ -31,7 +37,8 @@ func main() {
 
 	// Instantiate the Wasm module with just the wasm filename as argument.
 	// This will automatically run the "_start" function of the module.
-	mod, err := r.InstantiateWithConfig(ctx, quickjswasi.QuickJSWASM, config.WithArgs(quickjswasi.QuickJSWASMFilename))
+	args := append([]string{quickjswasi.QuickJSWASMFilename}, os.Args[1:]...)
+	mod, err := r.InstantiateWithConfig(ctx, quickjswasi.QuickJSWASM, config.WithArgs(args...))
 	if err != nil {
 		// Note: Most compilers do not exit the module after running "_start",
 		// unless there was an error. This allows you to call exported functions.

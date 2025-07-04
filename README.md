@@ -56,16 +56,24 @@ func main() {
 
 ## Example
 
-A complete example interactive JS REPL is provided in the `./repl` directory.
+A complete example interactive JS REPL is provided in the `./wazero-quickjs` directory.
 This demonstrates how to run QuickJS in a Wazero WebAssembly runtime.
 
 To run the REPL:
 
 ```bash
-cd ./repl && go run ./
+cd ./wazero-quickjs && go run ./
 ```
 
 This will start an interactive JavaScript shell powered by QuickJS-NG.
+
+To install the repl run in your home directory:
+
+```bash
+go install github.com/paralin/go-quickjs-wasi/wazero-quickjs@master
+```
+
+The `wazero-quickjs` command will now run the wazero repl.
 
 ## Updating
 
