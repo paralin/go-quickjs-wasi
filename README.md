@@ -54,6 +54,19 @@ func main() {
 }
 ```
 
+## Example
+
+A complete example interactive JS REPL is provided in the `./repl` directory.
+This demonstrates how to run QuickJS in a Wazero WebAssembly runtime.
+
+To run the REPL:
+
+```bash
+cd ./repl && go run ./
+```
+
+This will start an interactive JavaScript shell powered by QuickJS-NG.
+
 ## Updating
 
 To update to the latest QuickJS-NG release:
