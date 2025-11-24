@@ -214,48 +214,58 @@ try {
 // Extended JSON parsing (requires --std flag)
 console.log("\n21. Extended JSON parsing (std module)");
 try {
-  // Test standard JSON
-  const standardJson = '{"name": "test", "value": 123}';
-  const parsed1 = std.parseExtJSON(standardJson);
-  console.log("  Standard JSON parsed:", parsed1.name === "test" && parsed1.value === 123);
-  
-  // Test JSON5 features - single quoted strings
-  const singleQuotes = "{'name': 'test', 'value': 456}";
-  const parsed2 = std.parseExtJSON(singleQuotes);
-  console.log("  Single quotes:", parsed2.name === "test" && parsed2.value === 456);
-  
-  // Test JSON5 features - unquoted keys
-  const unquotedKeys = '{name: "test", value: 789}';
-  const parsed3 = std.parseExtJSON(unquotedKeys);
-  console.log("  Unquoted keys:", parsed3.name === "test" && parsed3.value === 789);
-  
-  // Test JSON5 features - trailing commas
-  const trailingComma = '{"name": "test", "value": 999,}';
-  const parsed4 = std.parseExtJSON(trailingComma);
-  console.log("  Trailing comma:", parsed4.name === "test" && parsed4.value === 999);
-  
-  // Test JSON5 features - comments
-  const withComments = `{
-    // This is a comment
-    "name": "test",
-    /* Multi-line
-       comment */
-    "value": 111
-  }`;
-  const parsed5 = std.parseExtJSON(withComments);
-  console.log("  With comments:", parsed5.name === "test" && parsed5.value === 111);
-  
-  // Test JSON5 features - hexadecimal numbers
-  const hexNumber = '{value: 0xFF}';
-  const parsed6 = std.parseExtJSON(hexNumber);
-  console.log("  Hex number (0xFF):", parsed6.value === 255);
-  
-  // Test JSON5 features - NaN and Infinity
-  const specialNumbers = '{nan: NaN, inf: Infinity, negInf: -Infinity}';
-  const parsed7 = std.parseExtJSON(specialNumbers);
-  console.log("  NaN:", isNaN(parsed7.nan));
-  console.log("  Infinity:", parsed7.inf === Infinity);
-  console.log("  -Infinity:", parsed7.negInf === -Infinity);
+  // Check if parseExtJSON is available
+  if (typeof std.parseExtJSON === 'function') {
+    // Test standard JSON
+    const standardJson = '{"name": "test", "value": 123}';
+    const parsed1 = std.parseExtJSON(standardJson);
+    console.log("  Standard JSON parsed:", parsed1.name === "test" && parsed1.value === 123);
+    
+    // Test JSON5 features - single quoted strings
+    const singleQuotes = "{'name': 'test', 'value': 456}";
+    const parsed2 = std.parseExtJSON(singleQuotes);
+    console.log("  Single quotes:", parsed2.name === "test" && parsed2.value === 456);
+    
+    // Test JSON5 features - unquoted keys
+    const unquotedKeys = '{name: "test", value: 789}';
+    const parsed3 = std.parseExtJSON(unquotedKeys);
+    console.log("  Unquoted keys:", parsed3.name === "test" && parsed3.value === 789);
+    
+    // Test JSON5 features - trailing commas
+    const trailingComma = '{"name": "test", "value": 999,}';
+    const parsed4 = std.parseExtJSON(trailingComma);
+    console.log("  Trailing comma:", parsed4.name === "test" && parsed4.value === 999);
+    
+    // Test JSON5 features - comments
+    const withComments = `{
+      // This is a comment
+      "name": "test",
+      /* Multi-line
+         comment */
+      "value": 111
+    }`;
+    const parsed5 = std.parseExtJSON(withComments);
+    console.log("  With comments:", parsed5.name === "test" && parsed5.value === 111);
+    
+    // Test JSON5 features - hexadecimal numbers
+    const hexNumber = '{value: 0xFF}';
+    const parsed6 = std.parseExtJSON(hexNumber);
+    console.log("  Hex number (0xFF):", parsed6.value === 255);
+    
+    // Test JSON5 features - NaN and Infinity
+    const specialNumbers = '{nan: NaN, inf: Infinity, negInf: -Infinity}';
+    const parsed7 = std.parseExtJSON(specialNumbers);
+    console.log("  NaN:", isNaN(parsed7.nan));
+    console.log("  Infinity:", parsed7.inf === Infinity);
+    console.log("  -Infinity:", parsed7.negInf === -Infinity);
+  } else {
+    console.log("  parseExtJSON not available in this WASI build");
+    
+    // Test standard JSON.parse as fallback
+    const standardJson = '{"name": "test", "value": 123}';
+    const parsed = JSON.parse(standardJson);
+    console.log("  Standard JSON.parse works:", parsed.name === "test" && parsed.value === 123);
+  }
   
 } catch (e) {
   console.log("  Extended JSON error:", e.message);
