@@ -9,6 +9,12 @@
 [Go Report Card Widget]: https://goreportcard.com/badge/github.com/paralin/go-quickjs-wasi
 [Go Report Card]: https://goreportcard.com/report/github.com/paralin/go-quickjs-wasi
 
+## Variants
+
+This repository provides the **command model** WASM binary, where QuickJS runs to completion in `_start()`. If you need re-entrant execution with host-controlled scheduling (for browsers, Node.js, Deno, or event-loop integration), see the **reactor model** variant:
+
+- [go-quickjs-wasi-reactor](https://github.com/aperturerobotics/go-quickjs-wasi-reactor) - Exports `qjs_init()`, `qjs_eval()`, `qjs_loop_once()` for non-blocking execution
+
 ## About QuickJS-NG
 
 QuickJS is a small and embeddable JavaScript engine. It aims to support the latest ECMAScript specification.
