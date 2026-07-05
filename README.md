@@ -1,13 +1,11 @@
 # go-quickjs-wasi
 
-[![GoDoc Widget]][GoDoc] [![Go Report Card Widget]][Go Report Card]
+[![GoDoc Widget]][GoDoc]
 
 > A Go module that embeds the QuickJS-NG WASI WebAssembly runtime.
 
 [GoDoc]: https://godoc.org/github.com/paralin/go-quickjs-wasi
 [GoDoc Widget]: https://godoc.org/github.com/paralin/go-quickjs-wasi?status.svg
-[Go Report Card Widget]: https://goreportcard.com/badge/github.com/paralin/go-quickjs-wasi
-[Go Report Card]: https://goreportcard.com/report/github.com/paralin/go-quickjs-wasi
 
 ## Variants
 
